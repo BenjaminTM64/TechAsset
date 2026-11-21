@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
 import { ChevronLeft, ChevronRight, Search, SlidersHorizontal, X } from 'lucide-react'
 
 export function ModalConfirmacion({ title, subtitle, children, onClose, className = '' }) {
@@ -6,14 +6,6 @@ export function ModalConfirmacion({ title, subtitle, children, onClose, classNam
   const dialogRef = useRef(null)
   const onCloseRef = useRef(onClose)
   onCloseRef.current = onClose
-
-  // Conserva la altura con la que se abrió el modal. Los mensajes posteriores
-  // se desplazan dentro de la ventana sin cambiar su posición centrada.
-  useLayoutEffect(() => {
-    const dialog = dialogRef.current
-    if (!dialog) return
-    dialog.style.height = `${Math.ceil(dialog.getBoundingClientRect().height)}px`
-  }, [])
 
   useEffect(() => {
     const previousFocus = document.activeElement
