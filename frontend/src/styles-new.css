@@ -3737,6 +3737,29 @@ body.modal-open {
   color: #8192a1;
   font-size: 11px;
 }
+
+/* Gestión de préstamos: conserva toda la información dentro del primer viewport. */
+.loans-panel {
+  padding: 14px 16px;
+}
+.loans-panel .panel-title {
+  margin-bottom: 10px;
+}
+.loans-panel .list-filters {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+}
+.loans-panel .table-wrap th {
+  padding-block: 8px;
+}
+.loans-panel .table-wrap td {
+  padding-block: 8px;
+}
+.loans-panel .pagination {
+  min-height: 38px;
+  margin-top: 8px;
+  padding-top: 7px;
+}
 :root[data-theme='dark'] .list-filters {
   background: #0f1d29;
   border-color: #293e4e;

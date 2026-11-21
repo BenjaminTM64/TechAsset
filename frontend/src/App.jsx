@@ -771,6 +771,7 @@ function LoansView({
   open,
   returnsOnly,
 }) {
+  const pageSize = 5
   const rows = items.filter(
     (x) =>
       `${x.equipo} ${x.codigoPatrimonial} ${x.colaborador} ${x.area}`
@@ -778,8 +779,11 @@ function LoansView({
         .includes(search.toLowerCase()) &&
       (filter === 'Todos' || x.estado === filter),
   )
+  const totalPages = Math.max(1, Math.ceil(rows.length / pageSize))
+  const safePage = Math.min(page, totalPages)
   return (
     <ListPanel
+      className="loans-panel"
       title={
         returnsOnly
           ? 'Devoluciones pendientes'
@@ -799,13 +803,14 @@ function LoansView({
       setFilter={setFilter}
       options={['Todos', 'Pendiente', 'Activo', 'Devuelto', 'Rechazado', 'Cancelado']}
       label="Estado"
-      page={page}
+      page={safePage}
       setPage={setPage}
       total={rows.length}
       itemLabel="préstamos"
+      pageSize={pageSize}
     >
       <TableList
-        rows={rows.slice((page - 1) * 7, page * 7)}
+        rows={rows.slice((safePage - 1) * pageSize, safePage * pageSize)}
         columns={[
           {
             key: 'equipo',
@@ -1124,6 +1129,7 @@ function Reports({ data }) {
   )
 }
 function ListPanel({
+  className = '',
   title,
   subtitle,
   action,
@@ -1140,13 +1146,17 @@ function ListPanel({
   itemLabel,
   children,
   assets,
+  pageSize,
 }) {
   return (
-    <section className={`panel ${assets ? 'asset-panel' : ''}`}>
+    <section className={`panel ${assets ? 'asset-panel' : ''} ${className}`.trim()}>
       <PanelTitle title={title} subtitle={subtitle} action={action} />
       <ListFilters
         search={search}
-        onSearch={setSearch}
+        onSearch={(value) => {
+          setSearch(value)
+          setPage(1)
+        }}
         placeholder={placeholder}
         filters={[
           {
@@ -1165,7 +1175,7 @@ function ListPanel({
       <Pagination
         page={page}
         total={total}
-        pageSize={assets ? 6 : 7}
+        pageSize={pageSize ?? (assets ? 6 : 7)}
         onChange={setPage}
         itemLabel={itemLabel}
       />
