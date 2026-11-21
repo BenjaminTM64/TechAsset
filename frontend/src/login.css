@@ -1,0 +1,662 @@
+.ta-login-page {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  overflow: hidden;
+  background: #fff;
+  color: #1e293b;
+}
+.ta-login-hero {
+  position: relative;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(24px, 3vw, 48px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background: #0f2744;
+}
+.ta-login-hero-image,
+.ta-login-hero-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.ta-login-hero-image {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  transition: transform 1s ease;
+}
+.ta-login-hero:hover .ta-login-hero-image {
+  transform: scale(1.025);
+}
+.ta-login-hero-overlay {
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgba(11, 27, 48, 0.97),
+    rgba(15, 39, 68, 0.67) 52%,
+    rgba(15, 39, 68, 0.48)
+  );
+}
+.ta-login-hero-top,
+.ta-login-hero-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.ta-hero-badge,
+.ta-company-badge {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(15, 23, 42, 0.72);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(10px);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+.ta-hero-badge svg {
+  width: 18px;
+  color: #22d3ee;
+}
+.ta-company-badge {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.ta-login-hero-content {
+  width: min(610px, 100%);
+  margin-top: auto;
+  padding: 64px 0 28px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+.ta-context-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 13px;
+  padding: 6px 11px;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 8px;
+  color: #a5f3fc;
+  background: rgba(14, 165, 233, 0.24);
+  backdrop-filter: blur(7px);
+  font-size: 11px;
+  font-weight: 700;
+}
+.ta-context-pill svg {
+  width: 15px;
+}
+.ta-login-hero-content h1 {
+  margin: 0 0 7px;
+  color: #fff;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+}
+.ta-login-hero-content > p {
+  max-width: 590px;
+  margin: 0 0 23px;
+  color: #f1f5f9;
+  font-size: clamp(13px, 1.15vw, 16px);
+  font-weight: 500;
+  line-height: 1.55;
+}
+.ta-feature-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.ta-feature-pills > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 11px;
+  background: rgba(15, 23, 42, 0.74);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(9px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  text-shadow: none;
+}
+.ta-feature-pills svg {
+  width: 17px;
+}
+.ta-feature-pills svg.cyan {
+  color: #67e8f9;
+}
+.ta-feature-pills svg.green {
+  color: #6ee7b7;
+}
+.ta-feature-pills svg.amber {
+  color: #fcd34d;
+}
+.ta-login-hero-footer {
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 10px;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+.ta-login-hero-footer span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.ta-login-hero-footer svg {
+  width: 15px;
+  color: #67e8f9;
+}
+.ta-login-auth-panel {
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(28px, 4.2vw, 58px);
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  background: #fff;
+}
+.ta-login-form-wrap {
+  width: min(448px, 100%);
+}
+.ta-login-heading {
+  margin-bottom: 23px;
+  text-align: center;
+}
+.ta-login-heading img {
+  display: block;
+  width: min(280px, 72%);
+  max-height: 68px;
+  margin: 0 auto 15px;
+  object-fit: contain;
+}
+.ta-login-heading h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 25px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+.ta-login-heading p {
+  margin: 7px auto 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.ta-login-form {
+  display: grid;
+  gap: 16px;
+}
+.ta-field {
+  display: grid;
+  gap: 6px;
+}
+.ta-field-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ta-field-label b {
+  color: #334155;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+.ta-field-label b i {
+  color: #f43f5e;
+  font-style: normal;
+}
+.ta-domain-badge,
+.ta-caps-warning {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border: 1px solid #e0f2fe;
+  border-radius: 5px;
+  color: #0284c7;
+  background: #f0f9ff;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+}
+.ta-caps-warning {
+  color: #b45309;
+  border-color: #fde68a;
+  background: #fffbeb;
+}
+.ta-caps-warning svg {
+  width: 13px;
+}
+.ta-input-wrap {
+  position: relative;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 11px;
+  background: rgba(248, 250, 252, 0.7);
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s,
+    background 0.18s;
+}
+.ta-input-wrap:focus-within {
+  border-color: #0284c7;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.13);
+}
+.ta-input-wrap > svg {
+  width: 18px;
+  flex: 0 0 auto;
+  color: #94a3b8;
+}
+.ta-input-wrap input {
+  min-width: 0;
+  flex: 1;
+  height: 43px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #1e293b;
+  font-size: 13px;
+}
+.ta-input-wrap input::placeholder {
+  color: #94a3b8;
+}
+.ta-input-wrap .ta-status-icon {
+  color: inherit;
+}
+.ta-field.success .ta-input-wrap {
+  border-color: #10b981;
+}
+.ta-field.success .ta-status-icon {
+  color: #059669;
+}
+.ta-field.warning .ta-input-wrap {
+  border-color: #f59e0b;
+  background: rgba(255, 251, 235, 0.45);
+}
+.ta-field.warning .ta-status-icon {
+  color: #d97706;
+}
+.ta-field.error .ta-input-wrap {
+  border-color: #ef4444;
+  background: rgba(254, 242, 242, 0.45);
+}
+.ta-field.error .ta-status-icon {
+  color: #dc2626;
+}
+.ta-password-toggle {
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  color: #94a3b8;
+  background: transparent;
+  cursor: pointer;
+}
+.ta-password-toggle:hover {
+  color: #334155;
+  background: #f1f5f9;
+}
+.ta-password-toggle svg {
+  width: 18px;
+}
+.ta-field-feedback {
+  min-height: 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #64748b;
+  font-size: 10.5px;
+  font-weight: 500;
+}
+.ta-field-feedback svg {
+  width: 14px;
+  flex: 0 0 auto;
+}
+.ta-field-feedback.success {
+  color: #059669;
+}
+.ta-field-feedback.warning {
+  color: #b45309;
+}
+.ta-field-feedback.error {
+  color: #dc2626;
+}
+.ta-login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 1px;
+}
+.ta-login-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ta-login-options input {
+  width: 16px;
+  height: 16px;
+  accent-color: #0284c7;
+}
+.ta-login-options button,
+.ta-login-back {
+  border: 0;
+  color: #0284c7;
+  background: none;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ta-login-options button:hover,
+.ta-login-back:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+.ta-login-submit {
+  width: 100%;
+  min-height: 45px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 0;
+  border-radius: 11px;
+  color: #fff;
+  background: #0284c7;
+  box-shadow: 0 3px 8px rgba(2, 132, 199, 0.18);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.18s,
+    box-shadow 0.18s,
+    transform 0.14s;
+}
+.ta-login-submit:hover:not(:disabled) {
+  background: #0369a1;
+  box-shadow: 0 7px 16px rgba(2, 132, 199, 0.22);
+}
+.ta-login-submit:active:not(:disabled) {
+  transform: scale(0.99);
+}
+.ta-login-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+.ta-login-submit svg {
+  width: 18px;
+}
+.ta-login-submit .spin {
+  animation: ta-spin 0.85s linear infinite;
+}
+.ta-login-back {
+  width: 100%;
+}
+.ta-general-alert {
+  position: relative;
+  margin-bottom: 16px;
+  padding: 12px 38px 12px 12px;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
+  border: 1px solid;
+  border-radius: 11px;
+  font-size: 11px;
+}
+.ta-general-alert > svg {
+  width: 19px;
+  margin-top: 1px;
+}
+.ta-general-alert strong,
+.ta-general-alert span {
+  display: block;
+}
+.ta-general-alert strong {
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+.ta-general-alert.error {
+  color: #9f1239;
+  border-color: #fecdd3;
+  background: #fff1f2;
+}
+.ta-general-alert.success {
+  color: #065f46;
+  border-color: #a7f3d0;
+  background: #ecfdf5;
+}
+.ta-general-alert button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+.ta-general-alert button:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+.ta-general-alert button svg {
+  width: 15px;
+}
+.ta-login-support {
+  margin-top: 24px;
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #f1f5f9;
+  color: #64748b;
+  font-size: 10.5px;
+}
+.ta-login-support span,
+.ta-login-support em {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-style: normal;
+}
+.ta-login-support svg {
+  width: 15px;
+  color: #0284c7;
+}
+.ta-login-support em {
+  padding: 6px 9px;
+  border-radius: 999px;
+  color: #475569;
+  background: #f1f5f9;
+  font-weight: 600;
+}
+.ta-login-support em svg {
+  color: #059669;
+}
+.ta-security-note {
+  padding: 11px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #bae6fd;
+  border-radius: 10px;
+  color: #075985;
+  background: #f0f9ff;
+}
+.ta-security-note > svg {
+  width: 21px;
+}
+.ta-security-note strong,
+.ta-security-note span {
+  display: block;
+}
+.ta-security-note strong {
+  font-size: 11px;
+}
+.ta-security-note span {
+  margin-top: 2px;
+  font-size: 10px;
+}
+.ta-password-requirements {
+  padding: 11px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+.ta-password-requirements > strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #475569;
+  font-size: 10px;
+}
+.ta-password-requirements > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 8px;
+}
+.ta-password-requirements span,
+.ta-password-requirements p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #64748b;
+  font-size: 9.5px;
+}
+.ta-password-requirements svg {
+  width: 12px;
+}
+.ta-password-requirements .met {
+  color: #059669;
+}
+.ta-password-requirements .missing {
+  color: #dc2626;
+}
+.ta-password-requirements p {
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid #e2e8f0;
+}
+.ta-login-page :focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+}
+@keyframes ta-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ta-login-hero-image,
+  .ta-login-submit {
+    transition: none;
+  }
+  .ta-login-submit .spin {
+    animation-duration: 1.6s;
+  }
+}
+@media (max-width: 900px) {
+  .ta-login-page {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+  .ta-login-hero {
+    min-height: 440px;
+    padding: 28px;
+  }
+  .ta-login-hero-content {
+    padding-top: 80px;
+  }
+  .ta-login-auth-panel {
+    min-height: auto;
+    padding: 46px 26px 56px;
+  }
+}
+@media (max-width: 560px) {
+  .ta-login-hero {
+    min-height: 410px;
+    padding: 20px;
+  }
+  .ta-login-hero-top {
+    align-items: flex-start;
+  }
+  .ta-company-badge {
+    display: none;
+  }
+  .ta-login-hero-content {
+    padding: 55px 0 22px;
+  }
+  .ta-login-hero-content h1 {
+    font-size: 36px;
+  }
+  .ta-login-hero-content > p {
+    font-size: 12px;
+  }
+  .ta-feature-pills {
+    gap: 7px;
+  }
+  .ta-feature-pills > span {
+    padding: 7px 9px;
+    font-size: 9.5px;
+  }
+  .ta-login-hero-footer > span:last-child {
+    display: none;
+  }
+  .ta-login-auth-panel {
+    padding: 38px 18px 48px;
+  }
+  .ta-login-heading img {
+    width: min(300px, 86%);
+  }
+  .ta-login-options,
+  .ta-login-support {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .ta-password-requirements > div {
+    grid-template-columns: 1fr;
+  }
+}

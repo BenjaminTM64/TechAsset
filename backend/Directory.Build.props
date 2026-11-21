@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <RestoreFallbackFolders></RestoreFallbackFolders>
+    <RestoreBuildInParallel>false</RestoreBuildInParallel>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj\**;bin\**;artifacts\**</DefaultItemExcludes>
+  </PropertyGroup>
+</Project>
