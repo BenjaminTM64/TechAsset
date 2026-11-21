@@ -782,19 +782,17 @@ td small {
   position: fixed;
   inset: 0;
   background: #0c2239a8;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  place-items: center;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: clamp(16px, 5vh, 48px) 15px;
+  padding: 15px;
   z-index: 20;
 }
 .modal {
   width: min(590px, 100%);
-  max-height: calc(100dvh - 32px);
+  max-height: 94dvh;
   overflow: auto;
-  flex: 0 0 auto;
   background: #fff;
   border-radius: 11px;
   padding: 20px;
