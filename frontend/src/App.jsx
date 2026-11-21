@@ -302,6 +302,8 @@ export default function App() {
   const go = (value) => {
     setProfileOpen(false)
     setView(value)
+    setSearch('')
+    setFilter('Todos')
     setPage(1)
   }
   const content = () => {
@@ -337,7 +339,16 @@ export default function App() {
       )
     if (view === 'solicitar')
       return (
-        <RequestView items={data.equipos.filter((x) => x.estado === 'Disponible')} open={open} />
+        <RequestView
+          items={data.equipos.filter((x) => x.estado === 'Disponible')}
+          search={search}
+          setSearch={setSearch}
+          filter={filter}
+          setFilter={setFilter}
+          page={page}
+          setPage={setPage}
+          open={open}
+        />
       )
     if (view === 'devoluciones')
       return (
@@ -666,15 +677,57 @@ function EquipmentView({
     </ListPanel>
   )
 }
-function RequestView({ items, open }) {
+function RequestView({ items, search, setSearch, filter, setFilter, page, setPage, open }) {
+  const pageSize = 5
+  const categories = [
+    'Todos',
+    ...new Set(
+      items
+        .map((item) => item.categoria)
+        .filter(Boolean)
+        .sort((a, b) => a.localeCompare(b)),
+    ),
+  ]
+  const normalizedSearch = search.trim().toLocaleLowerCase('es')
+  const rows = items.filter((item) => {
+    const searchable =
+      `${item.nombre} ${item.codigoPatrimonial} ${item.categoria} ${item.marca}`.toLocaleLowerCase(
+        'es',
+      )
+    return (
+      searchable.includes(normalizedSearch) && (filter === 'Todos' || item.categoria === filter)
+    )
+  })
+  const totalPages = Math.max(1, Math.ceil(rows.length / pageSize))
+  const safePage = Math.min(page, totalPages)
+  const visibleRows = rows.slice((safePage - 1) * pageSize, safePage * pageSize)
+  const changeFilter = (setter, value) => {
+    setter(value)
+    setPage(1)
+  }
+
   return (
     <section className="panel">
       <PanelTitle
         title="Nueva solicitud de préstamo"
         subtitle="Selecciona un equipo disponible y registra el periodo"
       />
+      <ListFilters
+        search={search}
+        onSearch={(value) => changeFilter(setSearch, value)}
+        placeholder="Buscar por nombre, código, categoría o marca"
+        filters={[
+          {
+            key: 'category',
+            label: 'Categoría',
+            value: filter,
+            onChange: (value) => changeFilter(setFilter, value),
+            options: categories,
+          },
+        ]}
+      />
       <div className="request-catalog">
-        {items.map((x) => (
+        {visibleRows.map((x) => (
           <article key={x.id}>
             <span>
               <Boxes />
@@ -689,9 +742,20 @@ function RequestView({ items, open }) {
           </article>
         ))}
       </div>
-      {!items.length && (
-        <p className="filtered-empty">No existen equipos disponibles en este momento.</p>
+      {!rows.length && (
+        <p className="filtered-empty">
+          {items.length
+            ? 'No hay equipos disponibles que coincidan con la búsqueda.'
+            : 'No existen equipos disponibles en este momento.'}
+        </p>
       )}
+      <Pagination
+        page={safePage}
+        total={rows.length}
+        pageSize={pageSize}
+        onChange={setPage}
+        itemLabel="equipos disponibles"
+      />
     </section>
   )
 }
