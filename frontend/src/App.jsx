@@ -771,7 +771,7 @@ function LoansView({
   open,
   returnsOnly,
 }) {
-  const pageSize = 5
+  const pageSize = 7
   const rows = items.filter(
     (x) =>
       `${x.equipo} ${x.codigoPatrimonial} ${x.colaborador} ${x.area}`
